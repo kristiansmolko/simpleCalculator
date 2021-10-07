@@ -41,29 +41,34 @@ public class Graphics {
         display.getChildren().addAll(displayBackground, flow);
 
         var buttons = new GridPane();
-        buttons.setTranslateX(-20);
+        buttons.setTranslateX(10);
         buttons.setTranslateY(30);
-        buttons.setMaxSize(120, 150);
+        buttons.setMaxSize(170, 150);
         buttons.setVgap(10);
         buttons.setHgap(10);
 
         var button1 = numberButton(1);
         var button2 = numberButton(2);
         var button3 = numberButton(3);
-
         var button4 = numberButton(4);
         var button5 = numberButton(5);
         var button6 = numberButton(6);
-
         var button7 = numberButton(7);
         var button8 = numberButton(8);
         var button9 = numberButton(9);
         var button0 = numberButton(0);
 
-        buttons.addRow(0, button1, button2, button3);
-        buttons.addRow(1, button4, button5, button6);
-        buttons.addRow(2, button7, button8, button9);
-        buttons.addRow(3, button0);
+        var add = functionalButton("+");
+        var substract = functionalButton("-");
+        var multiply = functionalButton("*");
+        var divide = functionalButton("/");
+        var equals = functionalButton("=");
+        var clear = functionalButton("C");
+
+        buttons.addRow(0, button1, button2, button3, divide);
+        buttons.addRow(1, button4, button5, button6, multiply);
+        buttons.addRow(2, button7, button8, button9, substract);
+        buttons.addRow(3, clear, button0, equals, add);
 
         stack.getChildren().addAll(background, display, buttons);
         root.setCenter(stack);
@@ -75,6 +80,14 @@ public class Graphics {
         var button = new Button(String.valueOf(number));
         button.setPrefSize(30, 30);
         button.setBackground(new Background(new BackgroundFill(Color.NAVAJOWHITE, new CornerRadii(5.0), new Insets(0))));
+        button.setStyle("-fx-border-radius: 5px");
+        return button;
+    }
+
+    private Button functionalButton(String display){
+        var button = new Button(display);
+        button.setPrefSize(30, 30);
+        button.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(5.0), new Insets(0))));
         button.setStyle("-fx-border-radius: 5px");
         return button;
     }
