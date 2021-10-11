@@ -1,5 +1,7 @@
 package personal.simplecalculator.graphics;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +13,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 public class Graphics {
+    private Text text = new Text();
+
     public BorderPane getBoard() {
         var root = new BorderPane();
 
@@ -28,7 +32,7 @@ public class Graphics {
         displayBackground.setPrefSize(180, 30);
         displayBackground.setBackground(new Background(new BackgroundFill(Color.OLIVE, new CornerRadii(5.0), new Insets(0))));
 
-        var text = new Text("2+2*40+60+50+50");
+        text = new Text("2+2*40+60+50+50");
 
         var flow = new TextFlow();
         flow.setMaxSize(180,30);
@@ -47,23 +51,23 @@ public class Graphics {
         buttons.setVgap(10);
         buttons.setHgap(10);
 
-        var button1 = numberButton(1);
-        var button2 = numberButton(2);
-        var button3 = numberButton(3);
-        var button4 = numberButton(4);
-        var button5 = numberButton(5);
-        var button6 = numberButton(6);
-        var button7 = numberButton(7);
-        var button8 = numberButton(8);
-        var button9 = numberButton(9);
-        var button0 = numberButton(0);
+        var button1 = new NumberCalculatorButton(1, text).getButton();
+        var button2 = new NumberCalculatorButton(2, text).getButton();
+        var button3 = new NumberCalculatorButton(3, text).getButton();
+        var button4 = new NumberCalculatorButton(4, text).getButton();
+        var button5 = new NumberCalculatorButton(5, text).getButton();
+        var button6 = new NumberCalculatorButton(6, text).getButton();
+        var button7 = new NumberCalculatorButton(7, text).getButton();
+        var button8 = new NumberCalculatorButton(8, text).getButton();
+        var button9 = new NumberCalculatorButton(9, text).getButton();
+        var button0 = new NumberCalculatorButton(0, text).getButton();
 
-        var add = functionalButton("+");
-        var substract = functionalButton("-");
-        var multiply = functionalButton("*");
-        var divide = functionalButton("/");
-        var equals = functionalButton("=");
-        var clear = functionalButton("C");
+        var add = new FunctionalCalculatorButton("+", text).getButton();
+        var substract = new FunctionalCalculatorButton("-", text).getButton();
+        var multiply = new FunctionalCalculatorButton("*", text).getButton();
+        var divide = new FunctionalCalculatorButton("/", text).getButton();
+        var equals = new FunctionalCalculatorButton("=", text).getButton();
+        var clear = new FunctionalCalculatorButton("C", text).getButton();
 
         buttons.addRow(0, button1, button2, button3, divide);
         buttons.addRow(1, button4, button5, button6, multiply);
@@ -74,21 +78,5 @@ public class Graphics {
         root.setCenter(stack);
 
         return root;
-    }
-
-    private Button numberButton(int number){
-        var button = new Button(String.valueOf(number));
-        button.setPrefSize(30, 30);
-        button.setBackground(new Background(new BackgroundFill(Color.NAVAJOWHITE, new CornerRadii(5.0), new Insets(0))));
-        button.setStyle("-fx-border-radius: 5px");
-        return button;
-    }
-
-    private Button functionalButton(String display){
-        var button = new Button(display);
-        button.setPrefSize(30, 30);
-        button.setBackground(new Background(new BackgroundFill(Color.GRAY, new CornerRadii(5.0), new Insets(0))));
-        button.setStyle("-fx-border-radius: 5px");
-        return button;
     }
 }
