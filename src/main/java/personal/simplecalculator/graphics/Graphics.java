@@ -1,9 +1,6 @@
 package personal.simplecalculator.graphics;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -13,8 +10,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 public class Graphics {
-    private Text text = new Text();
-
     public BorderPane getBoard() {
         var root = new BorderPane();
 
@@ -32,7 +27,7 @@ public class Graphics {
         displayBackground.setPrefSize(180, 30);
         displayBackground.setBackground(new Background(new BackgroundFill(Color.OLIVE, new CornerRadii(5.0), new Insets(0))));
 
-        text = new Text("2+2*40+60+50+50");
+        Text text = new Text("2+2*40+60+50+50");
 
         var flow = new TextFlow();
         flow.setMaxSize(180,30);
