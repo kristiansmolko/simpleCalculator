@@ -8,6 +8,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import personal.simplecalculator.functions.Function;
+import personal.simplecalculator.functions.Functions;
 
 public class FunctionalCalculatorButton extends CalculatorButton{
     protected FunctionalCalculatorButton(String value, Text text) {
@@ -21,20 +23,40 @@ public class FunctionalCalculatorButton extends CalculatorButton{
     }
 
     private void setActionEvent(){
-        if (!button.getText().equals("C") && !button.getText().equals("="))
+        if (!button.getText().equals("C") && !button.getText().equals("=")) {
             button.setOnAction(functionalActionEvent());
-        else if (button.getText().equals("C"))
+        } else if (button.getText().equals("C"))
             button.setOnAction(clearDisplay());
         else {
-            //TODO add method to calculate result
+            button.setOnAction(calculate());
+        }
+    }
+
+    private void addAction(){
+        switch(button.getText()){
+            case "+" -> action.addFunction(Function.ADDING);
+            case "-" -> action.addFunction(Function.SUBSTRACT);
+            case "*" -> action.addFunction(Function.MULTIPLY);
+            case "/" -> action.addFunction(Function.DIVIDE);
         }
     }
 
     private EventHandler<ActionEvent> functionalActionEvent(){
+        addAction();
         return actionEvent -> text.setText(text.getText() + button.getText());
     }
 
     private EventHandler<ActionEvent> clearDisplay(){
         return actionEvent -> text.setText("");
+    }
+
+    private EventHandler<ActionEvent> calculate(){
+        return actionEvent -> {
+            Functions functions = new Functions(action);
+            functions.setExercise(text.getText());
+            var result = functions.getResult();
+            text.setText(String.valueOf(result));
+            action.resetFunctions();
+        };
     }
 }
