@@ -2,7 +2,7 @@ package personal.simplecalculator.functions;
 
 public enum Function {
     ADDING(0, "\\+"),
-    SUBSTRACT(1, "\\-"),
+    SUBTRACT(1, "\\-"),
     MULTIPLY(2, "\\*"),
     DIVIDE(3, "\\/");
 
