@@ -1,13 +1,14 @@
 package personal.simplecalculator.functions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Functions {
     private final List<Function> functionList;
     private String exercise;
 
-    public Functions(Action action){
-        functionList = action.getFunctions();
+    public Functions(){
+        functionList = new ArrayList<>();
     }
 
     public void setExercise(String exercise){
@@ -31,12 +32,11 @@ public class Functions {
             numbers[1] = Integer.parseInt(temp[1]);
             return numbers;
         }
-        return null;
+        return new int[0];
     }
 
     public int getResult(){
         var numbers = processExercise();
-        assert numbers != null : "Numbers should not be null";
         if (isSingleFunction()){
             switch(functionList.get(0).getValue()){
                 case 0: return numbers[0] + numbers[1];
@@ -51,8 +51,5 @@ public class Functions {
     private boolean isSingleFunction(){
         return functionList.size()==1;
     }
-
-
-
 
 }
